@@ -1,0 +1,9 @@
+{
+  "name": "audio_to_lofi",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "node-wav": "^0.0.2"
+  },
+  "devDependencies": {}
+}
