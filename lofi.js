@@ -7,11 +7,11 @@ async function lofi(inputFile, outputFile) {
   const inputAudio = Wav.decode(inputData);
 
   // Read the vinyl noise file
-  const noiseData = fs.readFileSync("/audio/vinyl/398815__anthousai__vinyl-out-02.wav");
+  const noiseData = fs.readFileSync("public/audio/vinyl/398815__anthousai__vinyl-out-02.wav");
   const noiseAudio = Wav.decode(noiseData);
 
   // Read the lo-fi drum sample file
-  const drumsData = fs.readFileSync("/audio/vinyl/398815__anthousai__vinyl-out-02.wav/87314__timbre__36187-loopcentury-bhajan-h-cleaned-reverbed-pseudostereo-loopable.wav");
+  const drumsData = fs.readFileSync("public/audio/drum/49746__sub-d__bass-and-drum-loop.wav");
   const drumsAudio = Wav.decode(drumsData);
 
   // Add vinyl noise
@@ -33,9 +33,9 @@ async function lofi(inputFile, outputFile) {
 
 // Mixes two audio buffers together with a specified gain
 function mixAudio(audio1, audio2, gain) {
-  const mixed = audio1.slice();
+  const mixed = new Float32Array(audio1.length);
   for (let i = 0; i < mixed.length; i++) {
-    mixed[i] += audio2[i] * gain;
+    mixed[i] = audio1[i] + audio2[i] * gain;
   }
   return mixed;
 }
